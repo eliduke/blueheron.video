@@ -70,11 +70,12 @@
     <%= form.label :image, "Image (optional)", class: "form-label" %>
 
     <% if @band.image.attached? %>
-      <%= image_tag(image_url_for(@band), class: "img-fluid") %>
-      <p class="help-block">Choose a new image to replace the one above</p>
+      <%= image_tag image_url_for(@band), class: "img-fluid d-block", alt: "Band Photo" %>
+      <p>Choose a new image to replace the one above</p>
     <% end %>
 
-    <%= form.file_field :image, id: :band_image, class: "form-control form-control-lg" %>
+    <%= form.file_field :image, id: :band_image, accept: "image/jpeg,image/png", class: "form-control form-control-lg" %>
+    <p class="form-text">Images must be PNG or JPEG</p>
   </div>
 
   <div class="d-grid">

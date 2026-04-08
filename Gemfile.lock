@@ -44,6 +44,9 @@ GEM
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
+    active_storage_bunny (1.0.1)
+      bunny_storage_client (~> 1.0)
+      rails (>= 6.0, < 9.0)
     activejob (8.0.2.1)
       activesupport (= 8.0.2.1)
       globalid (>= 0.3.6)
@@ -87,6 +90,8 @@ GEM
     brakeman (7.1.0)
       racc
     builder (3.3.0)
+    bunny_storage_client (1.0.1)
+      net-http (>= 0.1.0)
     capybara (3.40.0)
       addressable
       matrix
@@ -403,6 +408,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  active_storage_bunny
   bootsnap
   bootstrap (~> 5.3.3)
   brakeman

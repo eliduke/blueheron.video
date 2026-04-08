@@ -3,24 +3,29 @@
 
 <div id="band">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-md-8 offset-md-2">
       <h1><%= @band.name %></h1>
 
-      <%= simple_format(@band.bio, class: "bio") %>
+      <%= image_tag(image_url_for(@band), class: "img-fluid mb-4 mx-auto d-block", alt: "Band Photo") %>
+      <div class="row">
+        <div class="col-lg-8">
+          <%= simple_format(@band.bio, class: "bio mb-4") %>
+        </div>
 
-      <h2><%= @band.location %></h2>
-    </div>
+        <div class="col-lg-4 bg-info-subtle p-3 rounded border border-1">
+          <h3 class="text-center mb-4"><%= @band.location %></h3>
 
-    <div class="col-sm-6">
-      <%= image_tag(image_url_for(@band), class: "img-fluid") %>
-
-      <ul class="links list-inline text-center">
-        <%= links_for(@band) %>
-      </ul>
+          <ul class="links list-inline text-center">
+            <%= links_for(@band) %>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
-  <h3>Videos</h3>
+  <hr>
+
+  <h1>Videos</h1>
   <%=
     render partial: "videos/list", locals: {
       videos: @videos.sample(6),
@@ -31,12 +36,14 @@
   %>
 
   <% if @videos.size > 6 %>
-    <%= link_to "Click here for all <em>#{@band.name}</em> videos".html_safe, videos_url(band_id: @band.id), class: 'btn btn-md btn-info btn-center' %>
+    <%= link_to videos_url(band_id: @band.id), class: 'btn btn-md btn-info btn-center' do %>
+      Click here for all <em><%= @band.name %></em> videos!
+    <% end %>
   <% end %>
 
   <hr>
 
-  <h3>Shows</h3>
+  <h1>Shows</h1>
   <%=
     render partial: "shows/list", locals: {
       shows: @shows,

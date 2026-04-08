@@ -61,15 +61,12 @@ module ApplicationHelper
   end
 
   def image_url_for(object)
-    # return "placeholder.png" if Rails.env.development?
+    return "placeholder.png" if Rails.env.development?
 
-    object_id    = object.id
-    object_class = object.class.name.downcase.pluralize
-
-    if object.image_attached?
-      "https://assets.eliduke.com/live-music-archive-images/#{object_class}/#{object_id}.jpg"
+    if object.image.attached?
+      url_for(object.image)
     else
-      "https://placeskull.com/640/360/050b27?t=#{rand(1000000)}"
+      "https://placehold.co/1200x600/050b27/FFF?text=#{object.name}&t=#{rand(1000000)}"
     end
   end
 

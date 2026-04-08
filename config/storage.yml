@@ -5,3 +5,11 @@ local:
 test:
   service: Disk
   root: <%= Rails.root.join("tmp/storage") %>
+
+bunny:
+  service: Bunny
+  access_key: ENV['BUNNY_ACCESS_KEY']
+  api_key: ENV['BUNNY_API_KEY']
+  storage_zone: blueheronvideo
+  region: la
+  cdn: https://blueheronvideo.b-cdn.net/

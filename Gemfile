@@ -16,6 +16,7 @@ gem "sorcery"
 gem "validates_email_format_of"
 gem "will_paginate"
 gem "will_paginate-bootstrap"
+gem "active_storage_bunny"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"

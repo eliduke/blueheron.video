@@ -61,14 +61,15 @@
     <%= form.label :image, "Image (optional)" %>
 
     <% if @venue.image.attached? %>
-      <%= image_tag(image_url_for(@venue), class: "img-fluid") %>
-      <p class="help-block">Choose a new image to replace the one above</p>
+      <%= image_tag image_url_for(@venue), class: "img-flui d-block" %>
+      <p class="form-text">Choose a new image to replace the one above</p>
     <% end %>
 
-    <%= form.file_field :image, id: :venue_image, class: "form-control form-control-lg" %>
+    <%= form.file_field :image, id: :venue_image, accept: "image/jpeg,image/png", class: "form-control form-control-lg" %>
+    <p class="form-text">Images must be PNG or JPEG</p>
   </div>
 
   <div class="actions d-grid">
-    <%= form.submit "Save", class: "btn btn-lg btn-primary"  %>
+    <%= form.submit "Save", class: "btn btn-lg btn-primary" %>
   </div>
 <% end %>

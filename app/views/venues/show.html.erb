@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <h3>Videos</h3>
+  <h1>Videos</h1>
   <%=
     render partial: "videos/list", locals: {
       videos: @videos.sample(6),
@@ -31,12 +31,14 @@
   %>
 
   <% if @videos.size > 6 %>
-    <%= link_to "Click here for all <em>#{@venue.name}</em> videos".html_safe, videos_url(venue_id: @venue.id), class: 'btn btn-md btn-info btn-center' %>
+    <%= link_to videos_url(venue_id: @venue.id), class: 'btn btn-md btn-info btn-center' do %>
+      Click here for all <em><%= @venue.name %></em> videos!
+    <% end %>
   <% end %>
 
   <hr>
 
-  <h3>Shows</h3>
+  <h1>Shows</h1>
 
   <%=
     render partial: "shows/list", locals: {

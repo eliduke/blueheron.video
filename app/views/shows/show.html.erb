@@ -8,7 +8,7 @@
     </div>
     <div class="col-sm-6 col-md-3">
       <%= image_tag(image_url_for(@show.venue), class: "img-fluid") %>
-      <p class="help-block text-center">
+      <p class="form-text text-center">
         <%= link_to @show.venue.name, @show.venue %><br>
         <%= @show.date.strftime("%B #{@show.date.day.ordinalize}, %Y") %>
       </p>

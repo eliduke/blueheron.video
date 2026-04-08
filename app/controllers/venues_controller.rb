@@ -23,7 +23,18 @@ class VenuesController < ApplicationController
   end
 
   def create
-    @venue = Venue.new(venue_params)
+    @venue = Venue.new(venue_params.except(:image))
+
+    if venue_params[:image]
+      set_attached_attributes(venue_params[:image])
+
+      @venue.image.attach(
+        io: @attached_tempfile,
+        key: @attached_key,
+        content_type: @attached_content_type,
+        filename: @attached_file_name
+      )
+    end
 
     if @venue.save
       redirect_to @venue, notice: 'Venue was successfully created.'
@@ -33,7 +44,21 @@ class VenuesController < ApplicationController
   end
 
   def update
-    if @venue.update(venue_params)
+    if @venue.update(venue_params.except(:image))
+
+      if venue_params[:image]
+        @venue.image.purge
+
+        set_attached_attributes(venue_params[:image])
+
+        @venue.image.attach(
+          io: @attached_tempfile,
+          key: @attached_key,
+          content_type: @attached_content_type,
+          filename: @attached_file_name
+        )
+      end
+
       redirect_to @venue, notice: 'Venue was successfully updated.'
     else
       render :edit
@@ -55,6 +80,14 @@ class VenuesController < ApplicationController
     @scoped_venues = current_user ? Venue.all : Venue.published
     @scoped_venues = @scoped_venues.search(params[:q]) if params[:q]
     @scoped_venues
+  end
+
+  def set_attached_attributes(image_params)
+    @attached_tempfile = image_params.tempfile
+    @attached_content_type = image_params.content_type
+    @attached_file_ext = @attached_content_type.split("/").last
+    @attached_file_name = "#{@venue.id}.#{@attached_file_ext}"
+    @attached_key = "venues/#{@attached_file_name}"
   end
 
   def venue_params
