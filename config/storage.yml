@@ -8,8 +8,8 @@ test:
 
 bunny:
   service: Bunny
-  access_key: ENV['BUNNY_ACCESS_KEY']
-  api_key: ENV['BUNNY_API_KEY']
+  access_key: <%= ENV['BUNNY_ACCESS_KEY'] %>
+  api_key: <%= ENV['BUNNY_API_KEY'] %>
   storage_zone: blueheronvideo
   region: la
   cdn: https://blueheronvideo.b-cdn.net/
